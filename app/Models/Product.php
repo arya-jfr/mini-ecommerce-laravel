@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $discount
  * @property int $qty
  * @property int $status
+ * @property string|null $description
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string|null $deleted_at
@@ -53,7 +54,8 @@ class Product extends Model
 		'price',
 		'discount',
 		'qty',
-		'status'
+		'status',
+		'description'
 	];
 
 	public function productCategory()
