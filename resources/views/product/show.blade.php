@@ -350,7 +350,7 @@
                                 </div>
                             </div>
                             <!-- badge offer -->
-                            <span class="product-card_badge">70% تخفیف‌</س>
+                            <span class="product-card_badge">70% تخفیف‌</span>
                         </div>
                         <!-- product img -->
                         <a href="product-details.html">
@@ -426,7 +426,7 @@
                                 </div>
                             </div>
                             <!-- badge offer -->
-                            <span class="product-card_badge">70% تخفیف‌</س>
+                            <span class="product-card_badge">70% تخفیف‌</span>
                         </div>
                         <!-- product img -->
                         <a href="product-details.html">
@@ -502,7 +502,7 @@
                                 </div>
                             </div>
                             <!-- badge offer -->
-                            <span class="product-card_badge">70% تخفیف‌</س>
+                            <span class="product-card_badge">70% تخفیف‌</span>
                         </div>
                         <!-- product img -->
                         <a href="product-details.html">
@@ -654,7 +654,7 @@
                                 </div>
                             </div>
                             <!-- badge offer -->
-                            <span class="product-card_badge">70% تخفیف‌</س>
+                            <span class="product-card_badge">70% تخفیف‌</span>
                         </div>
                         <!-- product img -->
                         <a href="product-details.html">
@@ -730,7 +730,7 @@
                                 </div>
                             </div>
                             <!-- badge offer -->
-                            <span class="product-card_badge">70% تخفیف‌</س>
+                            <span class="product-card_badge">70% تخفیف‌</span>
                         </div>
                         <!-- product img -->
                         <a href="product-details.html">
