@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Order
- * 
+ *
  * @property int $id
  * @property int $user_id
  * @property int $total_price
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * 
+ *
  * @property User $user
  * @property Collection|OrderItem[] $orderItems
  *
@@ -41,7 +42,7 @@ class Order extends Model
 		'total_price' => 'int',
 		'total_discount' => 'int',
 		'total_products' => 'int',
-		'status' => 'int'
+		'status' => OrderStatus::class
 	];
 
 	protected $fillable = [

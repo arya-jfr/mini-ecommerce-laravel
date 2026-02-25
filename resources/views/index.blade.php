@@ -68,22 +68,16 @@
             <div
                 class="flex items-center justify-evenly flex-wrap mt-12 child:mb-8 gap-x-8 child:items-center child:flex-col child:duration-300 child:cursor-pointer child:gap-y-1 child:text-gray-800 child:dark:text-gray-300 child:relative"
             >
-                <a href="http://127.0.0.1:8000/products?category_id%5B1%5D=on" class="group flex">
-                    <img src="./assets/images/category/5.png"
-                         class="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] object-cover group-hover:grayscale group-hover:opacity-90 duration-300"
-                         alt="category1" />
-                    <p class="pt-1 text-sm lg:text-lg line-clamp-1">
-                        الکترونیک
-                    </p>
-                </a>
-                <a href="http://127.0.0.1:8000/products?category_id%5B2%5D=on" class="group flex">
-                    <img src="./assets/images/category/5.png"
-                         class="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] object-cover group-hover:grayscale group-hover:opacity-90 duration-300"
-                         alt="category1" />
-                    <p class="pt-1 text-sm lg:text-lg line-clamp-1">
-                        کتاب
-                    </p>
-                </a>
+                @foreach($productCategories as $productCategory)
+                    <a href="{{ route('products.index', ['category_id' => [$productCategory->id => 'on']]) }}" class="group flex">
+                        <img src="./assets/images/category/5.png"
+                             class="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] object-cover group-hover:grayscale group-hover:opacity-90 duration-300"
+                             alt="category1" />
+                        <p class="pt-1 text-sm lg:text-lg line-clamp-1">
+                            {{ $productCategory->name }}
+                        </p>
+                    </a>
+                @endforeach
             </div>
         </section>
 
@@ -118,7 +112,7 @@
                             </svg>
                         </button>
                     </div>
-                    <a href="http://127.0.0.1:8000/products?sort=newest"
+                    <a href="{{ route('products.index', ['sort' => 'newest']) }}"
                        class="group shadow-xl text-sm md:text-base flex gap-x-1.5 items-center px-2 h-10 md:px-3 text-white bg-blue-600 rounded-xl">
                         <p>مشاهده همه</p>
                         <span
@@ -135,121 +129,10 @@
             <div class="swiper LatestProducts mt-5 w-full">
                 <div class="swiper-wrapper py-5">
                     <!-- PRODUCT ITEM -->
-                    <div class="swiper-slide product-card group">
-                        <!-- product header -->
-                        <div class="product-card_header">
-                            <div class="flex items-center gap-x-2">
-                                <form action="http://127.0.0.1:8000/cart/add" method="POST">
-                                    <input type="hidden" name="_token" value="4bYZgaUXw6NRUpehNCo79sVxnGyoZdTpQMBuSG48" autocomplete="off">
-                                    <input type="hidden" name="product_id" value="1"/>
-                                    <input type="hidden" name="qty" value="1"/>
+                    @foreach($newestProducts as $product)
+                        @include('components.productCard')
+                    @endforeach
 
-                                    <div class="tooltip">
-                                        <button
-                                            type="submit"
-                                            class="rounded-full p-1.5 app-border app-hover"
-                                        >
-                                            <svg class="size-4">
-                                                <use href="#shopping-cart"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="tooltiptext">
-                                            سبد خرید
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- badge offer -->
-                            <span class="product-card_badge">
-                10
-                %
-                تخفیف‌
-            </span>
-                        </div>
-                        <!-- product img -->
-                        <a href="http://127.0.0.1:8000/products/1">
-                            <img
-                                class="product-card_img group-hover:opacity-0 absolute"
-                                src="{{ asset("assets/images/products/1.png") }}"
-                                alt=""
-                            >
-                            <img class="product-card_img opacity-0 group-hover:opacity-100"
-                                 src="{{ asset("assets/images/products/1.png") }}" alt="">
-                        </a>
-                        <!--  product footer -->
-                        <div class="space-y-2">
-                            <a href="http://127.0.0.1:8000/products/1" class="product-card_link">
-                                گوشی هوشمند | Smartphone
-                            </a>
-                            <!-- Rate and Price -->
-                            <div class="product-card_price-wrapper">
-                                <!-- Price -->
-                                <div class="product-card_price">
-                                    <del>500,000 <h6>تومان</h6></del>
-                                    <p>450,000</p>
-                                    <span>تومان</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM -->
-                    <div class="swiper-slide product-card group">
-                        <!-- product header -->
-                        <div class="product-card_header">
-                            <div class="flex items-center gap-x-2">
-                                <form action="http://127.0.0.1:8000/cart/add" method="POST">
-                                    <input type="hidden" name="_token" value="4bYZgaUXw6NRUpehNCo79sVxnGyoZdTpQMBuSG48" autocomplete="off">
-                                    <input type="hidden" name="product_id" value="2"/>
-                                    <input type="hidden" name="qty" value="1"/>
-
-                                    <div class="tooltip">
-                                        <button
-                                            type="submit"
-                                            class="rounded-full p-1.5 app-border app-hover"
-                                        >
-                                            <svg class="size-4">
-                                                <use href="#shopping-cart"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="tooltiptext">
-                                            سبد خرید
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- badge offer -->
-                            <span class="product-card_badge">
-                1
-                %
-                تخفیف‌
-            </span>
-                        </div>
-                        <!-- product img -->
-                        <a href="http://127.0.0.1:8000/products/2">
-                            <img
-                                class="product-card_img group-hover:opacity-0 absolute"
-                                src="{{ asset("assets/images/products/1.png") }}"
-                                alt=""
-                            >
-                            <img class="product-card_img opacity-0 group-hover:opacity-100"
-                                 src="{{ asset("assets/images/products/1.png") }}" alt="">
-                        </a>
-                        <!--  product footer -->
-                        <div class="space-y-2">
-                            <a href="http://127.0.0.1:8000/products/2" class="product-card_link">
-                                رمان | Novel
-                            </a>
-                            <!-- Rate and Price -->
-                            <div class="product-card_price-wrapper">
-                                <!-- Price -->
-                                <div class="product-card_price">
-                                    <del>80,000 <h6>تومان</h6></del>
-                                    <p>79,000</p>
-                                    <span>تومان</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -285,7 +168,7 @@
                             </svg>
                         </button>
                     </div>
-                    <a href="http://127.0.0.1:8000/products?sort=best_selling"
+                    <a href="{{ route('products.index', ['sort' => 'best_selling']) }}"
                        class="group shadow-xl text-sm md:text-base flex gap-x-1.5 items-center px-2 h-10 md:px-3 text-white bg-blue-600 rounded-xl">
                         <p>مشاهده همه</p>
                         <span
@@ -302,121 +185,9 @@
             <div class="swiper BestSelling mt-5 w-full">
                 <div class="swiper-wrapper py-5">
                     <!-- PRODUCT ITEM -->
-                    <div class="swiper-slide product-card group">
-                        <!-- product header -->
-                        <div class="product-card_header">
-                            <div class="flex items-center gap-x-2">
-                                <form action="http://127.0.0.1:8000/cart/add" method="POST">
-                                    <input type="hidden" name="_token" value="4bYZgaUXw6NRUpehNCo79sVxnGyoZdTpQMBuSG48" autocomplete="off">
-                                    <input type="hidden" name="product_id" value="1"/>
-                                    <input type="hidden" name="qty" value="1"/>
-
-                                    <div class="tooltip">
-                                        <button
-                                            type="submit"
-                                            class="rounded-full p-1.5 app-border app-hover"
-                                        >
-                                            <svg class="size-4">
-                                                <use href="#shopping-cart"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="tooltiptext">
-                                            سبد خرید
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- badge offer -->
-                            <span class="product-card_badge">
-                10
-                %
-                تخفیف‌
-            </span>
-                        </div>
-                        <!-- product img -->
-                        <a href="http://127.0.0.1:8000/products/1">
-                            <img
-                                class="product-card_img group-hover:opacity-0 absolute"
-                                src="{{ asset("assets/images/products/1.png") }}"
-                                alt=""
-                            >
-                            <img class="product-card_img opacity-0 group-hover:opacity-100"
-                                 src="{{ asset("assets/images/products/1.png") }}" alt="">
-                        </a>
-                        <!--  product footer -->
-                        <div class="space-y-2">
-                            <a href="http://127.0.0.1:8000/products/1" class="product-card_link">
-                                گوشی هوشمند | Smartphone
-                            </a>
-                            <!-- Rate and Price -->
-                            <div class="product-card_price-wrapper">
-                                <!-- Price -->
-                                <div class="product-card_price">
-                                    <del>500,000 <h6>تومان</h6></del>
-                                    <p>450,000</p>
-                                    <span>تومان</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM -->
-                    <div class="swiper-slide product-card group">
-                        <!-- product header -->
-                        <div class="product-card_header">
-                            <div class="flex items-center gap-x-2">
-                                <form action="http://127.0.0.1:8000/cart/add" method="POST">
-                                    <input type="hidden" name="_token" value="4bYZgaUXw6NRUpehNCo79sVxnGyoZdTpQMBuSG48" autocomplete="off">
-                                    <input type="hidden" name="product_id" value="2"/>
-                                    <input type="hidden" name="qty" value="1"/>
-
-                                    <div class="tooltip">
-                                        <button
-                                            type="submit"
-                                            class="rounded-full p-1.5 app-border app-hover"
-                                        >
-                                            <svg class="size-4">
-                                                <use href="#shopping-cart"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="tooltiptext">
-                                            سبد خرید
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- badge offer -->
-                            <span class="product-card_badge">
-                1
-                %
-                تخفیف‌
-            </span>
-                        </div>
-                        <!-- product img -->
-                        <a href="http://127.0.0.1:8000/products/2">
-                            <img
-                                class="product-card_img group-hover:opacity-0 absolute"
-                                src="{{ asset("assets/images/products/1.png") }}"
-                                alt=""
-                            >
-                            <img class="product-card_img opacity-0 group-hover:opacity-100"
-                                 src="{{ asset("assets/images/products/1.png") }}" alt="">
-                        </a>
-                        <!--  product footer -->
-                        <div class="space-y-2">
-                            <a href="http://127.0.0.1:8000/products/2" class="product-card_link">
-                                رمان | Novel
-                            </a>
-                            <!-- Rate and Price -->
-                            <div class="product-card_price-wrapper">
-                                <!-- Price -->
-                                <div class="product-card_price">
-                                    <del>80,000 <h6>تومان</h6></del>
-                                    <p>79,000</p>
-                                    <span>تومان</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach($bestSellingProducts as $product)
+                        @include('components.productCard')
+                    @endforeach
                 </div>
             </div>
         </section>
