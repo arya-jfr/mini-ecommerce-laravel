@@ -41,4 +41,14 @@ class ProductController extends Controller
 
         return view('product.show', compact('product', 'relatedProducts', 'title'));
     }
+
+    public function removeFilter(Request $request)
+    {
+        $inputs = $request->all();
+
+        unset($inputs['exists']);
+        unset($inputs['category_id']);
+
+        return redirect()->route('products.index', $inputs);
+    }
 }

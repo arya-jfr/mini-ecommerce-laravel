@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Account\EditProfileController;
-use App\Http\Controllers\Account\OrderController;
+use App\Http\Controllers\Account\OrderController as AccountOrderController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,17 +11,24 @@ Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('
 Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function (){
 
     Route::get('/', 'index')->name('index');
+    Route::get('remove-filter', 'removeFilter')->name('remove-filter');
     Route::get('{product}', 'show')->name('show');
 });
 
 Route::prefix('account')->name('account.')->middleware('auth')->group(function (){
 
-   Route::get('orders', [OrderController::class, 'index'])->name('orders');
+   Route::get('orders', [AccountOrderController::class, 'index'])->name('orders');
 
    Route::prefix('edit-profile')->name('edit-profile.')->controller(EditProfileController::class)->group(function (){
 
        Route::get('/', 'index')->name('index');
        Route::post('/', 'post')->name('post');
    });
+});
+
+Route::prefix('cart')->name('cart.')->controller(OrderController::class)->middleware('auth')->group(function (){
+
+    Route::get('/', 'index')->name('index');
+    Route::post('add', 'add')->name('add');
 });
 

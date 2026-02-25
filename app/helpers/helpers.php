@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\CartService;
+
 if (!function_exists('calcpercent')){
     function calcpercent(int|float $totalPrice, int|float $discountAmount): int
     {
@@ -56,5 +58,12 @@ if (!function_exists('activeAccountSidebar')){
         }
 
         return 'hover:text-blue-500';
+    }
+}
+
+if (!function_exists('getUserCartCount')){
+    function getUserCartCount(): int
+    {
+        return CartService::getCount();
     }
 }

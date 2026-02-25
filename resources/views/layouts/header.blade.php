@@ -100,16 +100,18 @@
                     <svg class="size-6">
                         <use href="#shopping-bag"/>
                     </svg>
-                    <span class="absolute -top-1 -right-1 flex h-4 w-4">
+                    @if(getUserCartCount() > 0)
+                        <span class="absolute -top-1 -right-1 flex h-4 w-4">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75">
 
                         </span>
                         <span
                             class="relative inline-flex rounded-full h-4 w-4 bg-red-500 text-xs pt-1 flex-center text-white">
-                            1
+                            {{ getUserCartCount() }}
                         </span>
                     </span>
+                    @endif
                 </a>
             </div>
         </div>
@@ -249,13 +251,13 @@
                 <svg class="size-5">
                     <use href="#home"/>
                 </svg>
-                <a href="index.html">خانه</a>
+                <a href="{{ route('index') }}">خانه</a>
             </li>
             <li>
                 <svg class="size-5">
                     <use href="#squares"/>
                 </svg>
-                <a href="shop.html">فروشگاه</a>
+                <a href="{{ route('products.index') }}">فروشگاه</a>
             </li>
             <li>
                 <svg class="size-5">
@@ -267,7 +269,7 @@
                 <svg class="size-5">
                     <use href="#user"/>
                 </svg>
-                <a href="dashboard.html">حساب من</a>
+                <a href="{{ route('account.orders') }}">حساب من</a>
             </li>
         </ul>
     </div>
