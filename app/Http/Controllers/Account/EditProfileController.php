@@ -13,9 +13,10 @@ class EditProfileController extends Controller
 {
     public function index()
     {
+        $title = 'اطلاعات حساب کاربری';
         $user = auth()->user();
 
-        return view('account.edit-profile', compact('user'));
+        return view('account.edit-profile', compact('user', 'title'));
     }
 
     public function post(EditProfilePostRequest $request)

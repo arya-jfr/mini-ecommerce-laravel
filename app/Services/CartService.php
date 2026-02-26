@@ -8,7 +8,7 @@ class CartService
 {
     public static function add(int $productId, int $qty): void
     {
-        $userCart = session('cart', []);
+        $userCart = self::getItems();
 
         $userCart[$productId] = [
             'product_id' => $productId,
@@ -23,19 +23,72 @@ class CartService
 
     public static function getCount(): int
     {
-        $userCart = session('cart', []);
+        $userCart = self::getItems();
 
         return count($userCart);
     }
 
     public static function getItems(): array
     {
-        $userCart = session('cart', []);
+        return session('cart', []);
+    }
+
+    public static function getItemsWithDetails(): array
+    {
+        $userCart = self::getItems();
 
         foreach ($userCart as $key => $value){
             $userCart[$key]['product'] = Product::find($key);
         }
 
         return $userCart;
+    }
+
+    public static function clear(): void
+    {
+        session([
+            'cart' => []
+        ]);
+    }
+
+    public static function remove(int $productId): void
+    {
+        $userCart = self::getItems();
+
+        unset($userCart[$productId]);
+
+        session([
+            'cart' => $userCart
+        ]);
+    }
+
+    public static function updateQty(int $productId, int $newQty): void
+    {
+        $userCart = self::getItems();
+
+        $userCart[$productId]['qty'] = $newQty;
+
+        session([
+            'cart' => $userCart
+        ]);
+    }
+
+    public static function userCartTotalPrices(): array
+    {
+        $userCart = self::getItemsWithDetails();
+
+        $totalPrice = 0;
+        $totalDiscount = 0;
+
+        foreach ($userCart as $item){
+            $totalPrice += $item['product']->price * $item['qty'];
+            $totalDiscount += $item['product']->discount * $item['qty'];
+        }
+
+
+        return [
+            'price' => $totalPrice,
+            'discount' => $totalDiscount
+        ];
     }
 }

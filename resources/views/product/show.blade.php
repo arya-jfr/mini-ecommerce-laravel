@@ -224,7 +224,7 @@
                             id="customInput"
                             min="1"
                             max="{{ $product->qty }}"
-                            value="1"
+                            value="{{ getCartItemQty($product->id) }}"
                             class="custom-input mr-4 text-lg bg-transparent"
                         />
                         <svg class="w-6 h-6 decrement text-red-500">

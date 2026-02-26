@@ -13,10 +13,11 @@ class LoginController extends Controller
 {
     public function index()
     {
+        $title = 'ورود به حساب کاربری';
         $withoutHeader = true;
         $withoutFooter = true;
 
-        return view('auth.login', compact('withoutFooter', 'withoutHeader'));
+        return view('auth.login', compact('withoutFooter', 'withoutHeader', 'title'));
     }
 
     public function post(LoginPostRequest $request)

@@ -14,10 +14,11 @@ class RegisterController extends Controller
 {
     public function index()
     {
+        $title = 'ثبت نام';
         $withoutHeader = true;
         $withoutFooter = true;
 
-        return view('auth.register', compact('withoutFooter', 'withoutHeader'));
+        return view('auth.register', compact('withoutFooter', 'withoutHeader', 'title'));
     }
 
     public function post(RegisterPostRequest $request)

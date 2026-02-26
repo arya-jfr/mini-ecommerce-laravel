@@ -67,3 +67,12 @@ if (!function_exists('getUserCartCount')){
         return CartService::getCount();
     }
 }
+
+if (!function_exists('getCartItemQty')){
+    function getCartItemQty(int $productId): int
+    {
+        $userCart = CartService::getItems();
+
+        return $userCart[$productId]['qty'];
+    }
+}
